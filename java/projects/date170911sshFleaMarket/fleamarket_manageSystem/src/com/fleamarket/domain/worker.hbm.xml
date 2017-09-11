@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="com.fleamarket.domain.Worker" table="worker" catalog="ssh_t2">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="foreign">
+                <param name="property">personInfo</param>
+            </generator>
+        </id>
+        <many-to-one name="worker" class="com.fleamarket.domain.Worker" fetch="select">
+            <column name="creator_id" />
+        </many-to-one>
+        <one-to-one name="personInfo" class="com.fleamarket.domain.PersonInfo" constrained="true"></one-to-one>
+        <property name="identifyLevel" type="java.lang.Integer">
+            <column name="identify_level" />
+        </property>
+        <property name="professionTitle" type="string">
+            <column name="profession_title" length="20" />
+        </property>
+        <set name="workers" table="worker" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="creator_id" />
+            </key>
+            <one-to-many class="com.fleamarket.domain.Worker" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,98 @@
+-----///先做注册中的邮箱注册-----0907---周四--第二周-----
+-----创建带有外键的表：CREATE TABLE `ssh_t1`.`worker` (
+  `id` INT NOT NULL,
+  `creator_id` INT NULL,
+  `identify_level` INT NULL,
+  `profession_title` VARCHAR(20) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  CONSTRAINT `id_person_worker`
+    FOREIGN KEY (`id`)
+    REFERENCES `ssh_t1`.`PERSON_INFO` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    ----------------------------对已经生成表内部进行外键约束：
+    ALTER TABLE `ssh_t1`.`worker` 
+ADD INDEX `id_worker_admim_idx` (`creator_id` ASC);
+ALTER TABLE `ssh_t1`.`worker` 
+ADD CONSTRAINT `id_worker_admim`
+  FOREIGN KEY (`creator_id`)
+  REFERENCES `ssh_t1`.`worker` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+    -----------------------------------------
+做物品表：
+CREATE TABLE `ssh_t1`.`GOODS` (
+  `id` INT NOT NULL,
+  `classify` INT NULL,
+  `is_reduce_price` TINYINT(1) NULL,
+  `is_sell_out` TINYINT(1) NULL,
+  `price` DOUBLE NULL,
+  `putaway_date` DATE NULL,
+  `reduce_price` DOUBLE NULL,
+  `seller_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `id_goods_seller_idx` (`seller_id` ASC),
+  CONSTRAINT `id_goods_seller`
+    FOREIGN KEY (`seller_id`)
+    REFERENCES `ssh_t1`.`PERSON_INFO` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+做评论表：
+CREATE TABLE `ssh_t1`.`DISCUSS_INFO` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `discuss_date` DATE NULL,
+  `discussed_id` INT NULL,
+  `goods_id` INT NULL,
+  `image_address` VARCHAR(100) NULL,
+  `text` VARCHAR(145) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `id_goods_discuss_idx` (`goods_id` ASC),
+  CONSTRAINT `id_goods_discuss`
+    FOREIGN KEY (`goods_id`)
+    REFERENCES `ssh_t1`.`GOODS` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+创建交易信息表：
+CREATE TABLE `ssh_t1`.`trade_info` (
+  `id` INT NOT NULL,
+  `goods_id` INT NULL,
+  `is_peer_response` TINYINT(1) NULL,
+  `purchaser_id` INT NULL,
+  `trade_address` VARCHAR(50) NULL,
+  `trade_date` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `id_goods_tb_idx` (`goods_id` ASC),
+  INDEX `id_purchaser_person_idx` (`purchaser_id` ASC),
+  CONSTRAINT `id_goods_tb`
+    FOREIGN KEY (`goods_id`)
+    REFERENCES `ssh_t1`.`GOODS` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_purchaser_person`
+    FOREIGN KEY (`purchaser_id`)
+    REFERENCES `ssh_t1`.`PERSON_INFO` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+创建互评表：
+CREATE TABLE `ssh_t1`.`PEER_RESPONSE_INFO` (
+  `id` INT NOT NULL,
+  `purchaser_print_score` INT NULL,
+  `purchaser_remark` VARCHAR(100) NULL,
+  `seller_print_score` INT NULL,
+  `seller_remark` VARCHAR(100) NULL,
+  `goods_id` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `id_dis_goods_idx` (`goods_id` ASC),
+  CONSTRAINT `id_dis_goods`
+    FOREIGN KEY (`goods_id`)
+    REFERENCES `ssh_t1`.`GOODS` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+////////////////////////////////////////////////////////////////////0908--------------
+邮箱注册问题，如果已经存在了，，，？？？？？-------question......1
+-------------------------------------------------0909--------------------------
+修改字段长度：ALTER TABLE `ssh_t2`.`PERSON_INFO` 
+CHANGE COLUMN `email` `email` VARCHAR(50) NULL DEFAULT NULL ;
+/////////////////////////////////////////////////////////////////////0909/////////////////////
+---进行登录，，，使用邮箱，，，，，---个人中心-----资料完善------物品管理-------首页展示----买卖-----账单查询----

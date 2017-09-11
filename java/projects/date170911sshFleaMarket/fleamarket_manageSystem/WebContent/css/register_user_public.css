@@ -1,0 +1,65 @@
+#div_chooseWay{
+	text-align: left;
+	border-bottom: 1px blueviolet solid;
+}
+#div_chooseWay span {
+	padding-left: 20px;
+	font-style: oblique;
+	font-weight: bold;
+}
+#div_chooseWay span a {
+	text-decoration: none;
+}
+/* 提示：在 CSS 定义中，a:hover 必须被置于 a:link 和 a:visited 之后，才是有效的。
+提示：在 CSS 定义中，a:active 必须被置于 a:hover 之后，才是有效的。 */
+#div_chooseWay span a:link {
+	color: brown;
+}
+#div_chooseWay span a:visited{
+	color:green;
+}
+#div_chooseWay span a:hover {
+	text-decoration: underline;
+	font-style:normal;
+	font-weight:normal;
+	font-size: 1.5em;
+	color: chocolate;
+}
+#div_chooseWay span a:active {
+	color:red;
+}
+/* ==========================================对fieldset----email修饰-------------------------------- */
+#field_email{
+	border: 1px red dotted;
+	border-radius: 8px;
+}
+#field_email legend{
+	font-size: 1.2em;
+}
+/* ================================================对邮箱输入框修饰============================== */
+#email{
+	border-radius: 5px;
+}
+/* ================================================对验证码输入框修饰==================================== */
+#verific_code{
+	border-radius: 7px;
+	margin-left: 8px;
+}
+/* =================================================提交按钮修饰============================ */
+#submit{
+	border-radius: 9px;
+}
+/* ===================================================刷新验证码按钮修饰=========================== */
+#btn_refresh{
+	margin-left: 20px;
+	color: crimson;
+	border-radius: 8px;
+}
+#div_submit{
+	text-align: center;
+}
+/* =============================================修饰输入邮箱验证码=============================== */
+.green_ic{
+	border: 1px green solid;
+	background-color: green;
+}

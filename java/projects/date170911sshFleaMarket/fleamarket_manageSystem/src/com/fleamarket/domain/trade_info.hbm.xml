@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="com.fleamarket.domain.TradeInfo" table="trade_info" catalog="ssh_t2">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="goods" class="com.fleamarket.domain.Goods" fetch="select">
+            <column name="goods_id" />
+        </many-to-one>
+        <many-to-one name="personInfo" class="com.fleamarket.domain.PersonInfo" fetch="select">
+            <column name="purchaser_id" />
+        </many-to-one>
+        <property name="isPeerResponse" type="java.lang.Boolean">
+            <column name="is_peer_response" />
+        </property>
+        <property name="tradeAddress" type="string">
+            <column name="trade_address" length="50" />
+        </property>
+        <property name="tradeDate" type="string">
+            <column name="trade_date" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

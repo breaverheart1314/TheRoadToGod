@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.fleamarket.domain.PersonInfo" table="PERSON_INFO" catalog="ssh_t2">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="account" type="string">
+            <column name="account" length="20" unique="true" />
+        </property>
+        <property name="age" type="java.lang.Integer">
+            <column name="age" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" unique="true" />
+        </property>
+        <property name="headImgAddress" type="string">
+            <column name="head_img_address" length="100" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="20" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20" not-null="true" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="12" unique="true" />
+        </property>
+        <property name="registerDate" type="date">
+            <column name="register_date" length="10" />
+        </property>
+        <property name="sex" type="java.lang.Character">
+            <column name="sex" length="1" />
+        </property>
+        <property name="takeMoney" type="java.lang.Double">
+            <column name="take_money" precision="22" scale="0" />
+        </property>
+        <set name="goodses" table="GOODS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="seller_id" />
+            </key>
+            <one-to-many class="com.fleamarket.domain.Goods" />
+        </set>
+        <one-to-one name="worker" class="com.fleamarket.domain.Worker"></one-to-one>
+        <set name="tradeInfos" table="trade_info" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="purchaser_id" />
+            </key>
+            <one-to-many class="com.fleamarket.domain.TradeInfo" />
+        </set>
+    </class>
+</hibernate-mapping>

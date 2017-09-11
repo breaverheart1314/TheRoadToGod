@@ -1,0 +1,105 @@
+@charset "UTF-8";
+/* z-index需要有positive才会生效，越靠近屏幕外值++，基值为0 */
+body{
+	margin: 0 ;
+	margin-top: 0px;
+}
+#div_top{
+	height: 36px;
+	background-color: brown;
+	font-size: 32px;
+	position: relative;
+	z-index: 1;
+}
+#div_top a{
+	text-decoration: none;
+	position: relative;
+	top:-5px;
+	z-index: 2;
+}
+#span_login a:visited{
+	color:gray;
+}
+#span_login a:hover {
+	color: yellow;
+	font-style: oblique;
+}
+#span_login a:active{
+	color:black;
+}
+#div_search{
+	float:left;
+	position:relative;
+	height:36px;
+	top: -46px;
+}
+#input_search{
+	width:30%;
+	height:36px;
+	margin-right: 0px;
+	left:70%;
+}
+#span_login{
+	position:relative;
+	left:5px;
+	z-index: -1;
+}
+#div_recommend{
+	background-color: cadetblue;
+	position: relative;
+	top:-46px;
+}
+#div_imgs img{
+	width:100%;
+	height:181px;
+	position: relative;
+	top:0px;
+}
+#choose_radius li {
+	color:red;
+}
+#div_imgs .carousel-caption span{
+	color:red;
+	background-color:green; 
+	border: 1px green solid;
+}
+#div_center{
+	margin-top:-46px;
+	width:100%;
+}
+#div_classify{
+	float:left;
+	text-align:left;
+	background-color: lightgreen;
+	width:20%;
+	/* margin-top:-46px;//这个在加入内容后去掉，保持自动伸长 */
+}
+#div_goodsShow{
+	float:left;
+	position:relative;
+	background-color: lightgray;
+	width:60%;
+	text-align: center;
+}
+#div_webSiteAbout{
+	float:left;
+	position: relative;
+	width:20%;
+	background-color: yellow;
+}
+#ul_pagination{
+	position:relative;
+}
+.goods_peer{
+	float:left;
+	position:relative;
+	width:200px;
+	height:300px;
+	background-color: blue;
+	border:1px red solid;
+	margin-left:6.5%;
+	margin-bottom: 30px;
+}
+#div_paging{
+	text-align: center;
+}

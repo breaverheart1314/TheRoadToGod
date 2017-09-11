@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+<!-- 配置连接池，引入jdbc配置文件 -->
+<context:property-placeholder location="classpath:jdbc.properties" />
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+	<property name="driverClass" value="${jdbc.driverClass}"></property>
+	<property name="jdbcUrl" value="${jdbc.url}"></property>
+	<property name="user" value="${jdbc.username}"></property>
+	<property name="password" value="${jdbc.password}"></property>
+</bean>
+<!-- 配置会话工厂 -->
+
+<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"></property>
+	<property name="hibernateProperties">
+		<props>
+			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			<prop key="hibernate.show_sql">true</prop>
+			<prop key="hibernate.format_sql">true</prop>
+			<!-- 根据映射文件自动创建表 -->
+			<prop key="hibernate.hbm2ddl.auto">update</prop>
+		</props>
+	</property>
+	<property name="mappingResources">
+		<list>
+			<value>com/fleamarket/domain/person_info.hbm.xml</value>
+			<value>com/fleamarket/domain/worker.hbm.xml</value>
+			<value>com/fleamarket/domain/goods.hbm.xml</value>
+			<value>com/fleamarket/domain/discuss_info.hbm.xml</value>
+			<value>com/fleamarket/domain/trade_info.hbm.xml</value>
+			<value>com/fleamarket/domain/peer_response_info.hbm.xml</value>
+		</list>
+	</property>
+</bean>
+<!-- 配置数据对象访问类,dao -->
+<bean id="person_info_dao" class="com.fleamarket.dao.PersonInfoDao">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+</bean>
+<!-- 配置业务层，service -->
+<bean id="person_info_service" class="com.fleamarket.service.PersonInfoService">
+	<property name="personInfoDao" ref="person_info_dao"></property>
+</bean>
+<!-- 配置action, -->
+<bean id="person_info_action" class="com.fleamarket.action.PersonInfoAction">
+	<property name="personInfoService" ref="person_info_service"></property>
+</bean>
+<bean id="send_ic_for_email" class="com.fleamarket.action.SendIC_forEmail">
+	<!-- <property name="simpleJdbcTemplate" ref="jdbcTemplate"></property> -->
+	<property name="personInfoDao" ref="person_info_dao"></property>
+</bean>
+<bean id="register_from_email" class="com.fleamarket.action.AddOnePersonEmailRegister">
+	<property name="personInfoService" ref="person_info_service"></property>
+	
+</bean>
+<!-- ===============================配置spring-jdbc-template================== -->
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
+	<constructor-arg ref="dataSource"></constructor-arg>
+</bean>
+
+<!-- 配置事务管理 -->
+<bean	id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+</bean>
+</beans>

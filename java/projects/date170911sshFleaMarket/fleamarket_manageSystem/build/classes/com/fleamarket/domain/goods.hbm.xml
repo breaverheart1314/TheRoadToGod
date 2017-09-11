@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="com.fleamarket.domain.Goods" table="GOODS" catalog="ssh_t2">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="personInfo" class="com.fleamarket.domain.PersonInfo" fetch="select">
+            <column name="seller_id" />
+        </many-to-one>
+        <property name="classify" type="java.lang.Integer">
+            <column name="classify" />
+        </property>
+        <property name="isReducePrice" type="java.lang.Boolean">
+            <column name="is_reduce_price" />
+        </property>
+        <property name="isSellOut" type="java.lang.Boolean">
+            <column name="is_sell_out" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="price" precision="22" scale="0" />
+        </property>
+        <property name="putawayDate" type="date">
+            <column name="putaway_date" length="10" />
+        </property>
+        <property name="reducePrice" type="java.lang.Double">
+            <column name="reduce_price" precision="22" scale="0" />
+        </property>
+        <set name="peerResponseInfos" table="PEER_RESPONSE_INFO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="goods_id" />
+            </key>
+            <one-to-many class="com.fleamarket.domain.PeerResponseInfo" />
+        </set>
+        <set name="tradeInfos" table="trade_info" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="goods_id" />
+            </key>
+            <one-to-many class="com.fleamarket.domain.TradeInfo" />
+        </set>
+        <set name="discussInfos" table="DISCUSS_INFO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="goods_id" />
+            </key>
+            <one-to-many class="com.fleamarket.domain.DiscussInfo" />
+        </set>
+    </class>
+</hibernate-mapping>

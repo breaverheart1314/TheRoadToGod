@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+<package name="ssh_fleaMarket" extends="struts-default" namespace="/">
+	<action name="addOnePerson" class="person_info_action" method="addOnePerson">
+		<result name="success">pages/success.html</result>
+	</action>
+	<action name="sendicfromEmail" class="send_ic_for_email" method="executeAjax">
+		<result></result>
+	</action>
+	<action name="registerFromEmail" class="register_from_email" method="executeAddOne">
+		<result name="success">page/register_success.jsp</result>
+	</action>
+</package>
+</struts>
