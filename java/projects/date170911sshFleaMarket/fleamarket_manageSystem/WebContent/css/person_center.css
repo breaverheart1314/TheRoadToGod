@@ -1,0 +1,40 @@
+@charset "UTF-8";
+body{
+	background-color: #8BAA9A;
+}
+#div_top{
+	height:36px;
+	background-color: #17262E;/* 色调图1/6 */
+	color:#E1E0DE;/* 6/6 */
+	font-size: 32px;
+}
+#nav_ul{
+	background-color: #3B6159;/* 2/6 */
+}
+.content_nav{
+	background-color: #8BAA9A;/* 3/6 */
+}
+#person_info_left{
+	float:left;
+	width:18%;
+	background-color: #ECCEBF;/* 4/6 */
+}
+#function_div_p1{
+	background-color: #E7DED6;/* 5/6 */
+}
+#child_ul_1st li{
+	
+	list-style-type: none;
+}
+#child_ul_1st li a:hover{
+	cursor: pointer;
+}
+#person_info_right{
+	background-color: #E1E0DE;
+	float: left;
+	position:relative;
+	width:82%;
+}
+#watch_person_info{
+	font-size: 30px;
+}

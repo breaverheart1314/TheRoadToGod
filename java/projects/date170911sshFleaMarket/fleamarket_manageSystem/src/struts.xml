@@ -4,15 +4,28 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-<package name="ssh_fleaMarket" extends="struts-default" namespace="/">
-	<action name="addOnePerson" class="person_info_action" method="addOnePerson">
-		<result name="success">pages/success.html</result>
-	</action>
-	<action name="sendicfromEmail" class="send_ic_for_email" method="executeAjax">
-		<result></result>
-	</action>
-	<action name="registerFromEmail" class="register_from_email" method="executeAddOne">
-		<result name="success">page/register_success.jsp</result>
-	</action>
-</package>
+<!-- 如果使用感叹号的动态方法调用就需要开启，但是通配符的不用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"></constant>
+	<include file="com/fleamarket/action/login.struts2.xml"></include>
+	<include file="com/fleamarket/action/homepage.struts2.xml"></include>
+	<package name="ssh_fleaMarket" extends="struts-default" namespace="/">
+		<global-results><!-- 这个全局结果需要写在全局异常映射前 -->
+			<result name="error">page/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.NullPointerException"></exception-mapping>
+		</global-exception-mappings>
+		<action name="addOnePerson" class="person_info_action" method="addOnePerson">
+			<result name="success">page/success.html</result>
+		
+		</action>
+		<action name="sendicfromEmail" class="send_ic_for_email"
+			method="executeAjax">
+			<result></result>
+		</action>
+		<action name="registerFromEmail" class="register_from_email"
+			method="executeAddOne">
+			<result name="success">page/register_success.jsp</result>
+		</action>
+	</package>
 </struts>

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 body{
 	margin:0;
+	background-color: black;
 }
 #top{
 	height:36px;
@@ -37,6 +38,7 @@ body{
 	/*float: left;*/
 	margin-top: -100px;
 	align-content: center;
+	background-color: white;
 }
 /*求教css的大神，相对定位后的div怎么水平居中？*/
 #div3{
@@ -156,4 +158,11 @@ body{
 }
 #xinlang_a:hover{
 	background: url("../res/image/login/xinlang.jpg");
+}
+/* =================================================0911=======style=========== */
+.label_right_input{
+	color:green;
+}
+.label_error_input{
+	color:red;
 }

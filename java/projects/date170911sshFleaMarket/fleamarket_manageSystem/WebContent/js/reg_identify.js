@@ -25,3 +25,42 @@ function isEmail5(email) {
 	 }
 	 return true;
 }
+/*------------------------------------------------------------检查手机号------------------------------------*/
+function isPhone(phone){ 
+    if(!(/^1[34578]\d{9}$/.test(phone))){ 
+//        alert("手机号码有误，请重填");  
+        return false; 
+    } 
+    return true;
+}
+function isPhone2(phone){ 
+//    var phone = document.getElementById('phone').value;
+    if(!(/^1(3|4|5|7|8)\d{9}$/.test(phone))){ 
+        console.log("手机号码有误，请重填");  
+        return false; 
+    } 
+    return true;
+}
+function isPhone3(str){//验证130-139,150-159,180-189号码段的手机号码
+	var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+	if(!myreg.test(str)) {
+//		console.log('phone-err');
+		return false; 
+	}
+	return true;
+}
+function isPhone4(str){
+	var reg = new RegExp("/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/");
+	if(reg.test(str))
+		return true;
+	return false;
+}
+/*===============================检查固定号==================================================*/
+function checkTel(){
+	 var tel = document.getElementById('tel').value;
+	if(!/^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/.test(tel)){
+	console.log('固定电话有误，请重填');
+	return false;
+	}
+	return true;
+}

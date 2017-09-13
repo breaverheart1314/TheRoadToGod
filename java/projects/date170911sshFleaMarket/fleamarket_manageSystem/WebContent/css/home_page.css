@@ -16,6 +16,7 @@ body{
 	position: relative;
 	top:-5px;
 	z-index: 2;
+	width:20%;
 }
 #span_login a:visited{
 	color:gray;

@@ -28,6 +28,8 @@
 <!-- 自定义文件导入 -->
 <link rel="stylesheet" type="text/css"	href="../css/login_user_public.css">
 <script type="text/javascript" src="../js/login_user_public.js"></script>
+<script type="text/javascript" src="../js/reg_identify.js"></script>
+<script type="text/javascript" src="../js/reg_password.js"></script>
 </head>
 <body>
 	<div id="top"><span><a href="#">back to home-page</a></span></div>
@@ -38,9 +40,11 @@
 				<span id="span1"><a href="#" title="密码登录"		id="login_for_password">密码登录</a> <a href="#" title="验证码登录"	id="login_for_identifycode">验证码登录</a> </span>
 				<div id="div_login_password">
 					<div id="div_line_left"></div><br> 
-					<input type="text" name="account"	placeholder="请输入常用手机号/邮箱" maxlength="50" id="account"> <label id="account_tips">&nbsp;</label>
+					<input type="text" name="account"	placeholder="请输入常用手机号/邮箱" maxlength="50" id="account">
+					<label id="account_tips">&nbsp;</label>
 					<input type="password" name="password" placeholder="请输入密码" id="password">
-					<label id="password_tips">&nbsp;</label> <a href="#">忘记密码？</a>
+					<label id="password_tips">&nbsp;</label> 
+					<a href="#">忘记密码？</a>
 				</div>
 				<div id="div_login_idcode" hidden="hidden">
 					<div id="div_line_right"></div>	<br>
@@ -58,11 +62,12 @@
 						</span>
 					</div>
 				</div>
-				<div id="div9">	<button>立即登录</button>	</div>
+				<div id="div9">	<button id="login_immediately">立即登录</button>	</div>
+				<span id="tips_login_btn">...</span>
 			</div>
 			<div id="div5">	<table id="table1">	<tr><td></td></tr></table></div>
 			<div id="div6">
-				<span>还没有账号：</span><br> <span> <a href="#"	data-role="button" data-icon="arrow-r" data-iconpos="right">立即注册</a>
+				<span>还没有账号：</span><br> <span> <a href="#"	data-role="button" data-icon="arrow-r" data-iconpos="right" id="register">立即注册</a>
 				</span> <span>使用以下账号直接登录:</span> <br> <span> 
 				<a href="#" id="qq_a" title="qq">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>&nbsp; 
 				<a href="#" id="weixin_a" title="微信">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>&nbsp; 
@@ -74,7 +79,9 @@
 	</div>
 <!-- 加载完页面布局需要执行的js -->
 <script type="text/javascript">
-	$(document).ready(function() {webInit();});/* confirm("1");-确认-取消框 */	
+	if(window.addEventListener){window.addEventListener("load", webInit, false)}else{cosole.log('this browser cannot bind listener');}
+	//这个文档准备好总有点缺失，可能和window没什么理解
+	//$(document).ready(function() {webInit();});/* confirm("1");-确认-取消框 */	
 </script>
 </body>
 </html>

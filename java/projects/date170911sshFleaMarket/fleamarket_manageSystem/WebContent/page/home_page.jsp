@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,10 +27,18 @@
 </head>
 <body>
 	<div id="div_top">
-		<span id="span_login"><a href="#">login</a></span>
+		<span id="span_login"><a href="#" id="login_or_pc"><%-- login<s:property value="#session.id"/> --%>
+		<!-- 根据是否登录选择不同的显示 -->
+		<%
+			if(session.getAttribute("id") == null)
+				out.print("login");
+			else
+				out.print("person-center");
+		%>
+		</a></span>
 		<div class="input-group" id="div_search">
 			<input type="text" class="form-control input-lg" id="input_search"><span
-				class="input-group-addon btn btn-primary">搜索</span>
+				class="input-group-addon btn btn-primary" id="search">搜索</span>
 		</div>
 	</div>
 	<div id="div_recommend" class="carousel slide">

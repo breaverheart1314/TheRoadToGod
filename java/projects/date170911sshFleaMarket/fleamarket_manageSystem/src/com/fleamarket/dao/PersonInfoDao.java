@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+//import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
 import com.fleamarket.domain.PersonInfo;
 
 public class PersonInfoDao extends HibernateDaoSupport{
@@ -13,8 +15,9 @@ public class PersonInfoDao extends HibernateDaoSupport{
 	}
 	@SuppressWarnings("unchecked")
 	public PersonInfo getPersonInfoThroughEmail(String email) {
-		List<PersonInfo> list=this.getHibernateTemplate().find("from PersonInfo as p where p.email=?", email);
+		List<PersonInfo> list=(List<PersonInfo>) this.getHibernateTemplate().find("from PersonInfo as p where p.email=?", email);
 		System.out.println("get-length-for-email:"+list.size());
 		return list.size()>0?list.get(0):null;
 	}
+	
 }
